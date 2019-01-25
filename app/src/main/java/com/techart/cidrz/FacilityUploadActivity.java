@@ -2,30 +2,23 @@ package com.techart.cidrz;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -281,7 +274,7 @@ public class FacilityUploadActivity extends AppCompatActivity {
 
     private  void selectIntentAction() {
         final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.layout_rate_app);
+        dialog.setContentView(R.layout.dialog_select_action);
         dialog.setCanceledOnTouchOutside(false);
         TextView tv = dialog.findViewById(R.id.tv_camera);
         tv.setOnClickListener(new View.OnClickListener() {
