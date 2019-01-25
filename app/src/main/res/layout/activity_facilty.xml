@@ -1,0 +1,48 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    tools:context="com.techart.cidrz.FacilityUploadActivity">
+
+    <EditText
+        android:id="@+id/et_facility_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@drawable/et_border_background"
+        android:maxLines="1"
+        android:inputType="number"
+        android:hint="@string/facility_code"/>
+
+    <EditText
+        android:id="@+id/et_facillity_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:maxLines="10"
+        android:lines="10"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@drawable/et_border_background"
+        android:hint="@string/facility_name"
+        android:inputType="textCapSentences" />
+
+
+
+    <ImageView
+        android:id="@+id/ib_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_vertical"
+        app:srcCompat="@drawable/ic_camera_24px"
+        android:adjustViewBounds="true" />
+</LinearLayout>

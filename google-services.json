@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "590642053171",
+    "firebase_url": "https://cidrz-b799e.firebaseio.com",
+    "project_id": "cidrz-b799e",
+    "storage_bucket": "cidrz-b799e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590642053171:android:ca66c717207c8f85",
+        "android_client_info": {
+          "package_name": "com.techart.cidrz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590642053171-0i3b2uo3n7lviiuehu5cov1jpc4ve86t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techart.cidrz",
+            "certificate_hash": "97ad0185ee9c01effd3fa91961713ea495be0251"
+          }
+        },
+        {
+          "client_id": "590642053171-jcc4vkpajvvattr0b1a1ske4gad6gdub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbSmVXipPs7839msdOMnEQMPxvZpIK2GQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590642053171-jcc4vkpajvvattr0b1a1ske4gad6gdub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
