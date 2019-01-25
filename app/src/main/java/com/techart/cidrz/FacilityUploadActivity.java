@@ -195,7 +195,7 @@ public class FacilityUploadActivity extends AppCompatActivity {
         values.put(Constants.FACILITY_NAME, facilityName);
         values.put(Constants.IMAGE_URL,downloadImageUrl);
         values.put(Constants.TIME_CREATED, ServerValue.TIMESTAMP);
-        FireBaseUtils.mDatabaseFacility.child(url).setValue(values)
+        FireBaseUtils.mDatabaseFacility.child(FireBaseUtils.getUiD()).child(url).setValue(values)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -250,10 +250,12 @@ public class FacilityUploadActivity extends AppCompatActivity {
                     sendPost(task.getResult().toString(),url);
                     mProgress.dismiss();
                     finish();
-
+                    UploadUtils.makeNotification("Image upload complete", FacilityUploadActivity.this);
                 } else {
                     // Handle failures
                     UploadUtils.makeNotification("Image upload failed",FacilityUploadActivity.this);
+                    mProgress.dismiss();
+                    finish();
                 }
             }
         });

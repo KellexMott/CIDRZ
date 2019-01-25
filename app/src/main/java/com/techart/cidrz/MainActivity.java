@@ -1,4 +1,5 @@
 package com.techart.cidrz;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.techart.cidrz.constants.Constants;
@@ -20,6 +23,8 @@ import com.techart.cidrz.constants.FireBaseUtils;
 import com.techart.cidrz.model.Facility;
 import com.techart.cidrz.setup.LoginActivity;
 import com.techart.cidrz.utils.TimeUtils;
+
+import static com.techart.cidrz.constants.FireBaseUtils.getUiD;
 import static com.techart.cidrz.constants.FireBaseUtils.mAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -70,34 +75,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindView() {
-        FirebaseRecyclerAdapter<Facility,FacilityViewHolder> fireBaseRecyclerAdapter = new FirebaseRecyclerAdapter<Facility, FacilityViewHolder>(
-                Facility.class,R.layout.item_facility,FacilityViewHolder.class, FireBaseUtils.mDatabaseFacility)
-        {
-            @Override
-            protected void populateViewHolder(FacilityViewHolder viewHolder, final Facility model, int position) {
-                progressBar.setVisibility(View.GONE);
-                viewHolder.tvFacilityName.setText(model.getFacilityName());
-                viewHolder.setTint(MainActivity.this);
-                if (model.getImageUrl() != null){
-                    viewHolder.setIvImage(MainActivity.this,model.getImageUrl());
-                }
-                if (model.getTimeCreated() != null) {
-                    String time = TimeUtils.timeElapsed(model.getTimeCreated());
-                    viewHolder.tvTime.setText(time);
-                }
-
-                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MainActivity.this,FullImageActivity.class);
-                        intent.putExtra(Constants.IMAGE_URL,model.getImageUrl());
-                        startActivity(intent);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            progressBar.setVisibility(View.GONE);
+            FirebaseRecyclerAdapter<Facility, FacilityViewHolder> fireBaseRecyclerAdapter = new FirebaseRecyclerAdapter<Facility, FacilityViewHolder>(
+                    Facility.class, R.layout.item_facility, FacilityViewHolder.class, FireBaseUtils.mDatabaseFacility.child(getUiD())) {
+                @Override
+                protected void populateViewHolder(FacilityViewHolder viewHolder, final Facility model, int position) {
+                    viewHolder.setTint(MainActivity.this);
+                    if (model.getImageUrl() != null) {
+                        viewHolder.setIvImage(MainActivity.this, model.getImageUrl());
                     }
-                });
-            }
-        };
-        mFacilityList.setAdapter(fireBaseRecyclerAdapter);
-        fireBaseRecyclerAdapter.notifyDataSetChanged();
+                    if (model.getTimeCreated() != null) {
+                        String time = TimeUtils.timeElapsed(model.getTimeCreated());
+                        viewHolder.tvTime.setText(time);
+                    }
+
+                    viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(MainActivity.this, FullImageActivity.class);
+                            intent.putExtra(Constants.IMAGE_URL, model.getImageUrl());
+                            startActivity(intent);
+                        }
+                    });
+                }
+            };
+            mFacilityList.setAdapter(fireBaseRecyclerAdapter);
+            fireBaseRecyclerAdapter.notifyDataSetChanged();
+        } else {
+
+            Toast.makeText(MainActivity.this, "App still initializing", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override

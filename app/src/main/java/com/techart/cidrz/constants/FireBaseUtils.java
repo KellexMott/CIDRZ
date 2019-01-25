@@ -1,5 +1,7 @@
 package com.techart.cidrz.constants;
 
+import android.support.annotation.NonNull;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -19,5 +21,10 @@ public final class FireBaseUtils {
 
 
     private FireBaseUtils()  {
+    }
+
+    @NonNull
+    public static String getUiD() {
+        return mAuth.getCurrentUser().getUid();
     }
 }

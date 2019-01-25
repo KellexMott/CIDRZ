@@ -14,4 +14,5 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="no_submission">No facility information submitted yet</string>
 </resources>
